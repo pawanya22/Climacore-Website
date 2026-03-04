@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climacore | HVAC Auckland</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', sans-serif; background: #fff; color: #1e1e1e; line-height: 1.5; overflow-x: hidden; }
+    a { text-decoration: none; }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --primary-blue: #0a7cff;
+      --accent-orange: #e58411;
+      --dark-bg: #0e293b;
+      --text-dark: #1e1e1e;
+      --card-shadow: 0px 4px 4px #00000040;
+    }
+
+    /* ===== UTILITY CLASSES ===== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .section { padding: 5rem 0; position: relative; }
+    .text-center { text-align: center; }
+    .mt-5 { margin-top: 3rem; }
+    .mb-3 { margin-bottom: 1.5rem; }
+
+    /* ===== SECTION TITLES (creative) ===== */
+    .section-title-small {
+      font-weight: 700;
+      color: var(--accent-orange);
+      font-size: 18px;
+      letter-spacing: 3.15px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title-small::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--accent-orange);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    .section-title-small:hover::after { width: 100%; }
+
+    .section-title-large {
+      font-weight: 700;
+      color: var(--text-dark);
+      font-size: 42px;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: white;
+      color: #0a7cff;
+      box-shadow: 0px 4px 4px #00000040;
+    }
+    .btn-primary:hover {
+      background: #f0f0f0;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: white;
+      color: #0a7cff;
+    }
+
+    /* ===== CARDS & GRID ===== */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* ===== HERO SECTION (unchanged) ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+      background: url('/images/hero.jpg') center/cover no-repeat;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45));
+      z-index: 1;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(0, 174, 255, 0.4) 0%, rgba(0, 174, 255, 0.2) 40%, transparent 70%);
+      filter: blur(40px);
+      z-index: 1;
+      animation: pulseGlow 4s infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { opacity: 0.5; transform: translateX(-50%) scale(0.9); }
+      100% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+    }
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 10s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+    }
+    .hero .container { position: relative; z-index: 2; max-width: 900px; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 70px);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(to bottom, #ffffff, #d9f3ff);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub { font-size: 22px; opacity: 0.9; margin-bottom: 2rem; }
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(6px);
+      padding: 8px 20px;
+      border-radius: 60px;
+      width: fit-content;
+      margin: 2rem auto 0;
+      border: 1px solid rgba(255,255,255,0.25);
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .hero-badge span:first-child { font-size: 20px; }
+
+    /* ===== ABOUT SECTION (unchanged layout) ===== */
+    .about-wrapper { display: flex; gap: 3rem; align-items: center; flex-wrap: wrap; }
+    .about-content { flex: 1; min-width: 300px; }
+    .about-image { flex: 1; min-width: 300px; position: relative; }
+    .about-image::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border: 2px dashed var(--primary-blue);
+      border-radius: 30px;
+      opacity: 0.3;
+      animation: rotate 20s linear infinite;
+    }
+    @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .more-link {
+      color: var(--accent-orange);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2rem;
+      transition: gap 0.3s;
+    }
+    .more-link:hover { gap: 15px; }
+    .more-link svg { width: 24px; fill: var(--accent-orange); }
+
+    /* ===== ENHANCED MISSION CARDS (super creative) ===== */
+    .mission-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 40px 20px 40px 20px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(255,255,255,0.6);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      border: 1px solid rgba(10,124,255,0.15);
+      overflow: hidden;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    /* Gradient orb background */
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -30%;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle at 30% 30%, rgba(10,124,255,0.2), rgba(229,132,17,0.1) 70%, transparent);
+      border-radius: 50%;
+      z-index: -1;
+      transition: all 0.7s ease;
+    }
+
+    /* Small dot pattern overlay */
+    .mission-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(10,124,255,0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    /* Icon-like emoji treatment */
+    .mission-card h3 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      background: linear-gradient(145deg, #0d1a39, #0a7cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Underline that expands on hover */
+    .mission-card h3::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 45px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    .mission-card:hover h3::after {
+      width: 100%;
+    }
+
+    .mission-card p {
+      color: #2d3a4f;
+      line-height: 1.8;
+      font-size: 1rem;
+      position: relative;
+      z-index: 2;
+      font-weight: 400;
+      padding-right: 0.5rem;
+    }
+
+    /* Floating shine effect */
+    .mission-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 30px 60px -15px rgba(10,124,255,0.4), inset 0 2px 4px rgba(255,255,255,0.8);
+      border-color: rgba(10,124,255,0.3);
+    }
+
+    .mission-card:hover::before {
+      transform: scale(1.6);
+      opacity: 0.6;
+    }
+
+    /* Unique corner decoration */
+    .mission-card .card-corner {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      font-size: 40px;
+      opacity: 0.1;
+      transform: rotate(10deg);
+      transition: 0.3s;
+      pointer-events: none;
+    }
+
+    /* we add corner via extra pseudo but we can also just use existing after */
+    /* but we already used after for dots, so we'll create a new element if needed */
+    /* instead we add a span in HTML for corner? But we want to avoid changing HTML */
+    /* We'll add another pseudo using `:where` trick? Simpler: keep the old "✦" as extra pseudo with content */
+    .mission-card .star-decor {
+      display: none; /* not used */
+    }
+
+    /* add a second pseudo-element for the big star – but we can't have two ::after */
+    /* so we use a background gradient as star? */
+    /* we'll just add a new absolute pseudo via `:after` is already used for dots, so we need another one? 
+       We'll use `box-shadow` or background to create sparkle. Alternatively, we can use a separate <span> in HTML but we want minimal changes. 
+       We'll keep the design clean without extra big star. */
+
+    /* To maintain uniqueness, we add a subtle geometric shape using linear-gradient on ::after (already dots) */
+    /* But we can also add an extra element via `:before`? we already used before. So we have two pseudo-elements. 
+       We'll use `:before` for orb, `:after` for dots. That's fine. We can add a third pseudo using `:where` but not necessary. 
+       We'll add a small decorative plus in the corner using a background radial gradient on the card itself. */
+    .mission-card {
+      background: rgba(255, 255, 255, 0.75), radial-gradient(circle at 90% 90%, rgba(229,132,17,0.15) 0%, transparent 50%);
+      background-blend-mode: overlay;
+    }
+
+    /* ===== SERVICES, WHY, STEPS (unchanged) ===== */
+    .services-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f4f8fd 0%, #eef4ff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .services-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(10,124,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: move 15s infinite alternate;
+    }
+    @keyframes move { 0% { transform: translate(0, 0); } 100% { transform: translate(100px, 100px); } }
+    .services-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
+    .services-header h2 { font-size: 36px; color: #0d1a39; margin-bottom: 1rem; }
+    .services-header p { color: #6c7a96; }
+    .services-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      position: relative;
+      padding: 2.5rem 2rem;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(10, 124, 255, 0.1);
+      transition: all 0.4s ease;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '❄️';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 40px;
+      opacity: 0;
+      transition: opacity 0.4s, transform 0.4s;
+      transform: rotate(0deg);
+    }
+    .service-card:hover::before { opacity: 0.2; transform: rotate(20deg); }
+    .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(10, 124, 255, 0.15); border-color: #0A7CFF; }
+    .service-number {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 60px;
+      font-weight: 700;
+      color: rgba(10, 124, 255, 0.08);
+      pointer-events: none;
+      transition: 0.3s;
+    }
+    .service-card:hover .service-number { color: rgba(10, 124, 255, 0.2); transform: scale(1.2); }
+    .service-card h3 { font-size: 20px; margin-bottom: 1rem; color: #0d1a39; }
+    .service-card ul { list-style: none; padding: 0; margin: 0; }
+    .service-card ul li {
+      font-size: 14px;
+      color: #6c7a96;
+      margin-bottom: 0.6rem;
+      padding-left: 20px;
+      position: relative;
+    }
+    .service-card ul li::before {
+      content: "●";
+      position: absolute;
+      left: 0;
+      color: #0A7CFF;
+      font-size: 10px;
+      top: 6px;
+    }
+
+    .why-section {
+      padding: 6rem 0;
+      background: linear-gradient(180deg, #ffffff 0%, #f4f8fd 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-section::before {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(10,124,255,0.08) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      z-index: 0;
+      animation: rotateSlow 30s infinite linear;
+    }
+    @keyframes rotateSlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .why-header { text-align: center; margin-bottom: 4rem; position: relative; z-index: 1; }
+    .why-header h2 { font-size: 34px; color: #0d1a39; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .why-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      padding: 2.5rem 2rem;
+      border-radius: 24px;
+      border: 1px solid rgba(10,124,255,0.1);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .why-card:hover::after { opacity: 1; }
+    .why-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(10,124,255,0.15); border-color: #0A7CFF; }
+    .why-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0A7CFF, #4da3ff);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      font-size: 18px;
+      box-shadow: 0 10px 25px rgba(10,124,255,0.3);
+      transition: 0.3s;
+    }
+    .why-card:hover .why-icon { transform: rotate(360deg); }
+    .why-card h3 { font-size: 18px; margin-bottom: 0.8rem; color: #0d1a39; }
+    .why-card p { font-size: 14px; color: #6c7a96; line-height: 1.6; }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+      z-index: 0;
+    }
+    .step {
+      background: #f0f7ff;
+      border-left: 6px solid var(--primary-blue);
+      border-radius: 18px 50px 18px 50px;
+      padding: 1.5rem;
+      flex: 1 1 180px;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(4px);
+      transition: 0.3s;
+    }
+    .step:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .step::before {
+      content: attr(data-step);
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      font-size: 60px;
+      font-weight: 700;
+      color: rgba(10,124,255,0.1);
+      z-index: -1;
+    }
+    .step strong { font-size: 1.2rem; }
+
+    /* ===== BRAND SECTION — creative logo grid (no text) ===== */
+    .brand-section {
+      padding: 6rem 0;
+      background: radial-gradient(circle at 20% 20%, #0f1c2e, #060b16 70%);
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+    }
+    .brand-section .section-title-large {
+      color: #ffffff;
+    }
+    .brand-section::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(10,124,255,0.15), transparent 70%);
+      top: -200px;
+      right: -200px;
+      filter: blur(80px);
+    }
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .brand-item {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* soft glow ring effect */
+    .brand-item::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 22px;
+      background: linear-gradient(120deg, 
+          transparent, 
+          var(--primary-blue), 
+          transparent);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .brand-item:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 25px 50px rgba(10,124,255,0.4);
+    }
+
+    .brand-item:hover::after {
+      opacity: 1;
+    }
+
+    .brand-item img {
+      max-height: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .brand-item:hover img {
+      transform: scale(1.08);
+    }
+    /* decorative floating elements */
+    .brand-section .floating-dot {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(229,132,17,0.1) 0%, transparent 70%);
+      bottom: -40px;
+      left: 10%;
+      z-index: 1;
+    }
+    .brand-section .floating-dot2 {
+      top: -30px;
+      right: 5%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(10,124,255,0.05) 0%, transparent 70%);
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .testimonials { padding: 80px 20px; background: #f4f4f4; }
+    .testimonials-header { text-align: center; margin-bottom: 50px; }
+    .testimonials-header .section-title-small::after { left: 50%; transform: translateX(-50%); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .testimonial-card {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      height: 380px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+    .card-bg {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      display: block;
+    }
+    .testimonial-content {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 50px 25px 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+    .testimonial-content .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid #fff;
+      background: #b0c4de;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: white;
+      background: linear-gradient(145deg, #0a7cff, #4da3ff);
+    }
+    .testimonial-content h3 { margin-top: 10px; font-size: 22px; color: #333; }
+    .testimonial-content p { font-size: 14px; color: #666; margin: 10px 0 15px; line-height: 1.5; }
+    .testimonial-content .stars { color: #ff8a00; font-size: 18px; letter-spacing: 2px; }
+    .star-light { color: #ddd; }
+
+    .contact-footer {
+      position: relative;
+      background: radial-gradient(circle at top, #0b1b3a 0%, #050d1f 60%, #030814 100%);
+      color: #ffffff;
+      padding: 120px 20px 60px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .contact-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(circle at bottom, black 20%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-footer::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(white 1px, transparent 1px);
+      background-size: 120px 120px;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .footer-content { position: relative; z-index: 2; max-width: 1000px; margin: auto; }
+    .footer-title { font-size: 56px; font-weight: 700; margin-bottom: 40px; }
+    .footer-logo h3 { font-size: 28px; letter-spacing: 2px; color: #00c2ff; margin: 0; }
+    .footer-logo span { font-size: 14px; letter-spacing: 3px; color: #ffffff; }
+    .footer-logo p { font-size: 12px; letter-spacing: 2px; color: #00c2ff; margin-top: 5px; }
+    .footer-description { margin: 40px auto; font-size: 18px; color: #cbd5e1; line-height: 1.8; }
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 80px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      color: #b8c1d1;
+    }
+    .icon { font-size: 22px; }
+    .footer-social {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .footer-social a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #0d1f3f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+    .footer-social a:hover { background: #00c2ff; transform: translateY(-5px); }
+    .footer-bottom { margin-top: 60px; font-size: 14px; color: #94a3b8; }
+
+    .floating-contact {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary-blue);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 10px 25px rgba(10,124,255,0.4);
+      z-index: 99;
+      transition: 0.3s;
+      animation: bounce 2s infinite;
+    }
+    .floating-contact:hover { transform: scale(1.1); background: var(--accent-orange); }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 1rem; }
+      .hero h1 { font-size: 3rem; }
+      .steps::before { display: none; }
+      .footer-title { font-size: 38px; }
+      .footer-contact { gap: 30px; }
+      .contact-item { font-size: 16px; }
+      .brand-grid { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+    
+  <!-- FLOATING CONTACT BUTTON -->
+  <a href="#" class="floating-contact">💬</a>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-particles">
+      <div class="particle" style="top: 10%; left: 20%; animation-duration: 8s;"></div>
+      <div class="particle" style="top: 30%; left: 80%; animation-duration: 12s;"></div>
+      <div class="particle" style="top: 70%; left: 40%; animation-duration: 10s;"></div>
+      <div class="particle" style="top: 50%; left: 10%; animation-duration: 14s;"></div>
+      <div class="particle" style="top: 90%; left: 70%; animation-duration: 9s;"></div>
+    </div>
+    <div class="container">
+      <h1>Professional HVAC & Heat Pump Services in Auckland.</h1>
+      <p class="hero-sub">Installation • Maintenance • System Care • Professional Cleaning • Consultation</p>
+      <div class="btn-group">
+        <a href="#" class="btn btn-primary">Request a Quote</a>
+        <a href="#" class="btn btn-outline">Book a Service</a>
+      </div>
+      <div class="hero-badge">
+        <span>🔧</span>
+        <span>Delivered by experienced HVAC professionals. Same-day available.</span>
+      </div>
+      <p style="margin-top: 2rem; font-style: italic; opacity: 0.85;">Fast, reliable AC repair and heat pump services you can trust.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT / WHO WE ARE (with enhanced mission/vision/commitment cards) -->
+  <section class="section">
+    <div class="container">
+      <div class="about-wrapper">
+        <div class="about-content">
+          <div class="section-title-small">ABOUT OUR SERVICE</div>
+          <h2 class="section-title-large">Your Trusted AC & Heat Pump Experts</h2>
+          <p style="font-size: 1.2rem; margin-bottom: 2rem;">Climacore provides reliable heating, ventilation, and air conditioning services across Auckland. With strong industry experience in HVAC systems and mechanical project delivery, we focus on performance, efficiency, and long-term reliability.</p>
+          <a href="#" class="more-link">More Info 
+            <svg viewBox="0 0 24 24"><path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"/></svg>
+          </a>
+        </div>
+        <div class="about-image">
+          <div style="background: linear-gradient(145deg, #a2d6f9, #d9e2ec); height: 400px; border-radius: 20px;"></div>
+        </div>
+      </div>
+
+      <!-- MISSION / VISION / COMMITMENT cards (now super creative) -->
+      <div class="grid-3 mt-5">
+        <div class="mission-card">
+          <h3>🎯 Our Mission</h3>
+          <p>To deliver reliable heating, ventilation, and air conditioning solutions through professional standards, practical expertise, and a strong focus on system performance and customer satisfaction.</p>
+        </div>
+        <div class="mission-card">
+          <h3>🔭 Our Vision</h3>
+          <p>To grow into a trusted provider of integrated HVAC and mechanical solutions supporting residential and commercial developments across New Zealand.</p>
+        </div>
+        <div class="mission-card">
+          <h3>⭐ Commitment to Quality</h3>
+          <p>Safety, workmanship, customer care — at the heart of everything we do. Quality service, honest pricing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES (orange underlined) -->
+  <section class="services-section">
+    <div class="container">
+      <div class="services-header">
+        <div class="section-title-small">OUR SERVICES</div>
+        <h2>Complete HVAC & Ventilation Solutions</h2>
+        <p>Professional residential and commercial climate solutions engineered for performance, efficiency and long-term reliability.</p>
+      </div>
+      <div class="services-wrapper">
+        <div class="service-card"><div class="service-number">01</div><h3>Residential HVAC</h3><ul><li>Heat pump installation</li><li>Ducted systems with zone control</li><li>Heat pump deep cleaning</li><li>Heat pump repair</li></ul></div>
+        <div class="service-card"><div class="service-number">02</div><h3>Maintenance Services</h3><ul><li>Preventive maintenance</li><li>Performance optimisation</li><li>Scheduled servicing</li></ul></div>
+        <div class="service-card"><div class="service-number">03</div><h3>Ventilation Solutions</h3><ul><li>HRV & Fresh air systems</li><li>Extract systems</li><li>Air quality improvements</li></ul></div>
+        <div class="service-card"><div class="service-number">04</div><h3>Commercial HVAC Support</h3><ul><li>Cost consultation</li><li>Value engineering</li><li>Technical support</li></ul></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- WHY CHOOSE CLIMACORE (orange underlined) -->
+  <section class="why-section">
+    <div class="container">
+      <div class="why-header">
+        <div class="section-title-small">WHY CHOOSE CLIMACORE</div>
+        <h2>Built on Performance. Backed by Trust.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><div class="why-icon">01</div><h3>Experienced HVAC Professionals</h3><p>Skilled technicians delivering precision installation, repair, and advanced system care.</p></div>
+        <div class="why-card"><div class="why-icon">02</div><h3>Performance-Focused Solutions</h3><p>Every system engineered for efficiency, airflow optimisation, and long-term reliability.</p></div>
+        <div class="why-card"><div class="why-icon">03</div><h3>Honest Recommendations</h3><p>Transparent advice based on real performance needs — not unnecessary upselling.</p></div>
+        <div class="why-card"><div class="why-icon">04</div><h3>Reliable Auckland Service</h3><p>Responsive local support you can count on across residential and commercial projects.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH STEPS (added space after title) -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title-small" style="margin-bottom: 2.5rem;">OUR APPROACH</div>
+      <div class="steps">
+        <div class="step" data-step="1"><strong>Step 1 — Assessment</strong><br>Understand system condition.</div>
+        <div class="step" data-step="2"><strong>Step 2 — Recommendation</strong><br>Best practical solution.</div>
+        <div class="step" data-step="3"><strong>Step 3 — Professional Service</strong><br>Proper equipment, tools & methods.</div>
+        <div class="step" data-step="4"><strong>Step 4 — Ongoing Support</strong><br>Maintenance guidance.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS — creative logo grid (no text) -->
+  <section class="brand-section">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-title-small">BRANDS WE WORK WITH</div>
+        <h2 class="section-title-large" style="font-size: 32px;">Trusted global manufacturers</h2>
+        <p style="margin-bottom: 3rem;">We install, service, and maintain systems from these leading brands.</p>
+      </div>
+      <div class="brand-grid">
+        <!-- Mitsubishi Electric -->
+        <div class="brand-item">
+          <img src="/images/mitsubishi.png" alt="Mitsubishi Electric" onerror="this.src='https://via.placeholder.com/150x60?text=Mitsubishi'">
+        </div>
+        <!-- Daikin -->
+        <div class="brand-item">
+          <img src="/images/daikin.png" alt="Daikin" onerror="this.src='https://via.placeholder.com/150x60?text=Daikin'">
+        </div>
+        <!-- Panasonic -->
+        <div class="brand-item">
+          <img src="/images/panasonic.png" alt="Panasonic" onerror="this.src='https://via.placeholder.com/150x60?text=Panasonic'">
+        </div>
+        <!-- Temperzone -->
+        <div class="brand-item">
+          <img src="/images/temperzone.png" alt="Temperzone" onerror="this.src='https://via.placeholder.com/150x60?text=Temperzone'">
+        </div>
+        <!-- AirTouch -->
+        <div class="brand-item">
+          <img src="/images/airtouch.png" alt="AirTouch" onerror="this.src='https://via.placeholder.com/150x60?text=AirTouch'">
+        </div>
+      </div>
+    </div>
+    <!-- decorative elements -->
+    <div class="floating-dot"></div>
+    <div class="floating-dot2"></div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials section">
+    <div class="container">
+      <div class="testimonials-header">
+        <div class="section-title-small">TESTIMONIALS</div>
+        <h2 class="section-title-large">Our Clients Review</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="card-bg" style="background: linear-gradient(145deg, #2c7cb0, #1a4b6d);"></div>
+          <div class="testimonial-content">
+            <div class="avatar">👤</div>
+            <h3>Kasun Perera</h3>
+            <p>Quick response and very professional work. My AC is working perfectly now.</p>
+            <div class="stars">★★★★<span class="star-light">★</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="card-bg" style="background: linear-gradient(145deg, #4a6fa5, #1e3a5f);"></div>
+          <div class="testimonial-content">
+            <div class="avatar">👤</div>
+            <h3>Nadeesha Silva</h3>
+            <p>Affordable pricing and friendly technician. Highly recommended.</p>
+            <div class="stars">★★★★<span class="star-light">★</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="card-bg" style="background: linear-gradient(145deg, #2e8b57, #1d5a3e);"></div>
+          <div class="testimonial-content">
+            <div class="avatar">👤</div>
+            <h3>Ruwan Fernando</h3>
+            <p>Booked in the morning, fixed by afternoon. Excellent service!</p>
+            <div class="stars">★★★★<span class="star-light">★</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="contact-footer">
+    <div class="footer-content">
+      <h2 class="footer-title">Auckland Wide Service</h2>
+      <div class="footer-logo">
+        <h3>CLIMACORE</h3>
+        <span>HVAC</span>
+        <p>SMART CLIMATE SOLUTIONS</p>
+      </div>
+      <p class="footer-description">Need professional HVAC support?<br>Contact us now for quick and reliable service.</p>
+      <div class="footer-contact">
+        <div class="contact-item"><span class="icon">✉</span> <span>info@climacore.co.nz</span></div>
+        <div class="contact-item"><span class="icon">📞</span> <span>+64 21 226 2040</span></div>
+        <div class="contact-item"><span class="icon">📍</span> <span>Auckland</span></div>
+      </div>
+      <div class="footer-social"><a href="#">F</a><a href="#">G</a></div>
+      <div class="footer-bottom">© 2026 Mocxdesigns. All rights reserved</div>
+    </div>
+  </footer>
+</body>
+</html>
