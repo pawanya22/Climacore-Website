@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Climacore | HVAC Auckland</title>
+  <title>Climacore | HVAC Auckland (with AOS animations)</title>
+  <!-- AOS Animate On Scroll (CSS) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -113,17 +116,30 @@
       gap: 2rem;
     }
 
+    /* ===== TOP LEFT LOGO ===== */
+    .site-logo {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      z-index: 10;
+    }
+
+    .site-logo img {
+      height: 80px;
+      width: auto;
+      display: block;
+    }
     /* ===== HERO SECTION (unchanged) ===== */
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 130vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: white;
       overflow: hidden;
-      background: url('/images/hero.jpg') center/cover no-repeat;
+      background: url('/images/hero.jpg') center 50% /cover no-repeat;
     }
     .hero::before {
       content: "";
@@ -210,6 +226,23 @@
       border-radius: 30px;
       opacity: 0.3;
       animation: rotate 20s linear infinite;
+    }
+
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      height: 420px;            /* ⭐ rectangle height — adjust if needed */
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;        /* ⭐ fills rectangle perfectly */
+      display: block;
+      object-position: center 20%;
     }
     @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     .more-link {
@@ -589,28 +622,9 @@
       overflow: hidden;
     }
 
-    /* soft glow ring effect */
-    .brand-item::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 22px;
-      background: linear-gradient(120deg, 
-          transparent, 
-          var(--primary-blue), 
-          transparent);
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
     .brand-item:hover {
       transform: translateY(-10px) scale(1.05);
       box-shadow: 0 25px 50px rgba(10,124,255,0.4);
-    }
-
-    .brand-item:hover::after {
-      opacity: 1;
     }
 
     .brand-item img {
@@ -686,13 +700,16 @@
       left: 50%;
       transform: translateX(-50%);
       border: 4px solid #fff;
-      background: #b0c4de;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      color: white;
-      background: linear-gradient(145deg, #0a7cff, #4da3ff);
+      overflow: hidden;              /* ⭐ VERY IMPORTANT */
+      background: #eee;
+    }
+
+    /* image inside the circle */
+    .testimonial-content .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;             /* ⭐ makes image fill nicely */
+      display: block;
     }
     .testimonial-content h3 { margin-top: 10px; font-size: 22px; color: #333; }
     .testimonial-content p { font-size: 14px; color: #666; margin: 10px 0 15px; line-height: 1.5; }
@@ -728,9 +745,11 @@
     }
     .footer-content { position: relative; z-index: 2; max-width: 1000px; margin: auto; }
     .footer-title { font-size: 56px; font-weight: 700; margin-bottom: 40px; }
-    .footer-logo h3 { font-size: 28px; letter-spacing: 2px; color: #00c2ff; margin: 0; }
-    .footer-logo span { font-size: 14px; letter-spacing: 3px; color: #ffffff; }
-    .footer-logo p { font-size: 12px; letter-spacing: 2px; color: #00c2ff; margin-top: 5px; }
+    .footer-logo img {
+      height: 80px;
+      width: auto;
+      margin-bottom: 20px;
+    }
     .footer-description { margin: 40px auto; font-size: 18px; color: #cbd5e1; line-height: 1.8; }
     .footer-contact {
       display: flex;
@@ -748,25 +767,31 @@
     }
     .icon { font-size: 22px; }
     .footer-social {
-      margin-top: 40px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+      display: flex;            /* horizontal layout */
+      justify-content: center;  /* center the icons horizontally */
+      align-items: center;      /* center vertically if needed */
+      gap: 20px;                /* spacing between icons */
+      margin-top: 20px; 
     }
-    .footer-social a {
+    .social-icon {
       width: 42px;
       height: 42px;
       border-radius: 50%;
-      background: #0d1f3f;
+      background: rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      text-decoration: none;
-      color: white;
-      transition: 0.3s;
+      color: #ffffff;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      gap: 12px;
     }
-    .footer-social a:hover { background: #00c2ff; transform: translateY(-5px); }
+
+    .social-icon:hover {
+      background: var(--primary-blue);
+      transform: translateY(-3px);
+    }
     .footer-bottom { margin-top: 60px; font-size: 14px; color: #94a3b8; }
 
     .floating-contact {
@@ -799,14 +824,15 @@
       .contact-item { font-size: 16px; }
       .brand-grid { gap: 1.5rem; }
     }
+
   </style>
 </head>
 <body>
-    
-  <!-- FLOATING CONTACT BUTTON -->
-  <a href="#" class="floating-contact">💬</a>
 
-  <!-- HERO -->
+  <!-- PAGE CONTENT WRAPPER -->
+  <div class="page-content">
+  
+  <!-- HERO (with AOS) -->
   <section class="hero">
     <div class="hero-particles">
       <div class="particle" style="top: 10%; left: 20%; animation-duration: 8s;"></div>
@@ -816,25 +842,37 @@
       <div class="particle" style="top: 90%; left: 70%; animation-duration: 9s;"></div>
     </div>
     <div class="container">
-      <h1>Professional HVAC & Heat Pump Services in Auckland.</h1>
-      <p class="hero-sub">Installation • Maintenance • System Care • Professional Cleaning • Consultation</p>
-      <div class="btn-group">
-        <a href="#" class="btn btn-primary">Request a Quote</a>
-        <a href="#" class="btn btn-outline">Book a Service</a>
+      <h1 data-aos="fade-up" data-aos-delay="100">Professional HVAC & Heat Pump Services in Auckland.</h1>
+      <p class="hero-sub" data-aos="fade-up" data-aos-delay="200">Installation • Maintenance • System Care • Professional Cleaning • Consultation</p>
+      <div class="btn-group" data-aos="fade-up" data-aos-delay="300">
+        <a 
+          href="mailto:info@climacore.co.nz?subject=HVAC%20Quote%20Request&body=Hello%20Climacore,%0A%0AI%20would%20like%20to%20request%20a%20quote%20for:%0A-%20Service%20Type:%0A-%20Property%20Location:%0A-%20Preferred%20Date:%0A-%20Additional%20Details:%0A%0AThank%20you."
+          class="btn btn-primary">
+          Request a Quote
+          </a>
+        <a href="https://wa.me/64212262040?text=Hi%20Climacore,%20I%20would%20like%20to%20book%20a%20service."
+          class="btn btn-outline"
+          target="_blank">
+          Book a Service
+        </a>
       </div>
-      <div class="hero-badge">
+      <div class="hero-badge" data-aos="fade-up" data-aos-delay="400">
         <span>🔧</span>
         <span>Delivered by experienced HVAC professionals. Same-day available.</span>
       </div>
-      <p style="margin-top: 2rem; font-style: italic; opacity: 0.85;">Fast, reliable AC repair and heat pump services you can trust.</p>
+      <p style="margin-top: 2rem; font-style: italic; opacity: 0.85;" data-aos="fade-up" data-aos-delay="500">Fast, reliable AC repair and heat pump services you can trust.</p>
     </div>
   </section>
 
-  <!-- ABOUT / WHO WE ARE (with enhanced mission/vision/commitment cards) -->
+  <a href="#" class="site-logo">
+    <img src="/images/Logo.png" alt="Climacore Logo">
+  </a>
+
+  <!-- ABOUT / WHO WE ARE -->
   <section class="section">
     <div class="container">
       <div class="about-wrapper">
-        <div class="about-content">
+        <div class="about-content" data-aos="fade-right">
           <div class="section-title-small">ABOUT OUR SERVICE</div>
           <h2 class="section-title-large">Your Trusted AC & Heat Pump Experts</h2>
           <p style="font-size: 1.2rem; margin-bottom: 2rem;">Climacore provides reliable heating, ventilation, and air conditioning services across Auckland. With strong industry experience in HVAC systems and mechanical project delivery, we focus on performance, efficiency, and long-term reliability.</p>
@@ -842,22 +880,22 @@
             <svg viewBox="0 0 24 24"><path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"/></svg>
           </a>
         </div>
-        <div class="about-image">
-          <div style="background: linear-gradient(145deg, #a2d6f9, #d9e2ec); height: 400px; border-radius: 20px;"></div>
+        <div class="about-image" data-aos="fade-left">
+          <img src="/images/about.jpg" alt="HVAC Service">
         </div>
       </div>
 
-      <!-- MISSION / VISION / COMMITMENT cards (now super creative) -->
+      <!-- MISSION / VISION / COMMITMENT cards (super creative + AOS) -->
       <div class="grid-3 mt-5">
-        <div class="mission-card">
+        <div class="mission-card" data-aos="fade-up" data-aos-delay="0">
           <h3>🎯 Our Mission</h3>
           <p>To deliver reliable heating, ventilation, and air conditioning solutions through professional standards, practical expertise, and a strong focus on system performance and customer satisfaction.</p>
         </div>
-        <div class="mission-card">
+        <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
           <h3>🔭 Our Vision</h3>
           <p>To grow into a trusted provider of integrated HVAC and mechanical solutions supporting residential and commercial developments across New Zealand.</p>
         </div>
-        <div class="mission-card">
+        <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
           <h3>⭐ Commitment to Quality</h3>
           <p>Safety, workmanship, customer care — at the heart of everything we do. Quality service, honest pricing.</p>
         </div>
@@ -865,79 +903,79 @@
     </div>
   </section>
 
-  <!-- SERVICES (orange underlined) -->
+  <!-- SERVICES -->
   <section class="services-section">
     <div class="container">
-      <div class="services-header">
+      <div class="services-header" data-aos="fade-up">
         <div class="section-title-small">OUR SERVICES</div>
         <h2>Complete HVAC & Ventilation Solutions</h2>
         <p>Professional residential and commercial climate solutions engineered for performance, efficiency and long-term reliability.</p>
       </div>
       <div class="services-wrapper">
-        <div class="service-card"><div class="service-number">01</div><h3>Residential HVAC</h3><ul><li>Heat pump installation</li><li>Ducted systems with zone control</li><li>Heat pump deep cleaning</li><li>Heat pump repair</li></ul></div>
-        <div class="service-card"><div class="service-number">02</div><h3>Maintenance Services</h3><ul><li>Preventive maintenance</li><li>Performance optimisation</li><li>Scheduled servicing</li></ul></div>
-        <div class="service-card"><div class="service-number">03</div><h3>Ventilation Solutions</h3><ul><li>HRV & Fresh air systems</li><li>Extract systems</li><li>Air quality improvements</li></ul></div>
-        <div class="service-card"><div class="service-number">04</div><h3>Commercial HVAC Support</h3><ul><li>Cost consultation</li><li>Value engineering</li><li>Technical support</li></ul></div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="0"><div class="service-number">01</div><h3>Residential HVAC</h3><ul><li>Heat pump installation</li><li>Ducted systems with zone control</li><li>Heat pump deep cleaning</li><li>Heat pump repair</li></ul></div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100"><div class="service-number">02</div><h3>Maintenance Services</h3><ul><li>Preventive maintenance</li><li>Performance optimisation</li><li>Scheduled servicing</li></ul></div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200"><div class="service-number">03</div><h3>Ventilation Solutions</h3><ul><li>HRV & Fresh air systems</li><li>Extract systems</li><li>Air quality improvements</li></ul></div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300"><div class="service-number">04</div><h3>Commercial HVAC Support</h3><ul><li>Cost consultation</li><li>Value engineering</li><li>Technical support</li></ul></div>
       </div>
     </div>
   </section>
   
-  <!-- WHY CHOOSE CLIMACORE (orange underlined) -->
+  <!-- WHY CHOOSE CLIMACORE -->
   <section class="why-section">
     <div class="container">
-      <div class="why-header">
+      <div class="why-header" data-aos="fade-up">
         <div class="section-title-small">WHY CHOOSE CLIMACORE</div>
         <h2>Built on Performance. Backed by Trust.</h2>
       </div>
       <div class="why-grid">
-        <div class="why-card"><div class="why-icon">01</div><h3>Experienced HVAC Professionals</h3><p>Skilled technicians delivering precision installation, repair, and advanced system care.</p></div>
-        <div class="why-card"><div class="why-icon">02</div><h3>Performance-Focused Solutions</h3><p>Every system engineered for efficiency, airflow optimisation, and long-term reliability.</p></div>
-        <div class="why-card"><div class="why-icon">03</div><h3>Honest Recommendations</h3><p>Transparent advice based on real performance needs — not unnecessary upselling.</p></div>
-        <div class="why-card"><div class="why-icon">04</div><h3>Reliable Auckland Service</h3><p>Responsive local support you can count on across residential and commercial projects.</p></div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="0"><div class="why-icon">01</div><h3>Experienced HVAC Professionals</h3><p>Skilled technicians delivering precision installation, repair, and advanced system care.</p></div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="100"><div class="why-icon">02</div><h3>Performance-Focused Solutions</h3><p>Every system engineered for efficiency, airflow optimisation, and long-term reliability.</p></div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="200"><div class="why-icon">03</div><h3>Honest Recommendations</h3><p>Transparent advice based on real performance needs — not unnecessary upselling.</p></div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="300"><div class="why-icon">04</div><h3>Reliable Auckland Service</h3><p>Responsive local support you can count on across residential and commercial projects.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- APPROACH STEPS (added space after title) -->
+  <!-- APPROACH STEPS -->
   <section class="section">
     <div class="container">
-      <div class="section-title-small" style="margin-bottom: 2.5rem;">OUR APPROACH</div>
+      <div class="section-title-small" style="margin-bottom: 2.5rem;" data-aos="fade-up">OUR APPROACH</div>
       <div class="steps">
-        <div class="step" data-step="1"><strong>Step 1 — Assessment</strong><br>Understand system condition.</div>
-        <div class="step" data-step="2"><strong>Step 2 — Recommendation</strong><br>Best practical solution.</div>
-        <div class="step" data-step="3"><strong>Step 3 — Professional Service</strong><br>Proper equipment, tools & methods.</div>
-        <div class="step" data-step="4"><strong>Step 4 — Ongoing Support</strong><br>Maintenance guidance.</div>
+        <div class="step" data-step="1" data-aos="fade-up" data-aos-delay="0"><strong>Step 1 — Assessment</strong><br>Understand system condition.</div>
+        <div class="step" data-step="2" data-aos="fade-up" data-aos-delay="100"><strong>Step 2 — Recommendation</strong><br>Best practical solution.</div>
+        <div class="step" data-step="3" data-aos="fade-up" data-aos-delay="200"><strong>Step 3 — Professional Service</strong><br>Proper equipment, tools & methods.</div>
+        <div class="step" data-step="4" data-aos="fade-up" data-aos-delay="300"><strong>Step 4 — Ongoing Support</strong><br>Maintenance guidance.</div>
       </div>
     </div>
   </section>
 
-  <!-- BRANDS — creative logo grid (no text) -->
+  <!-- BRANDS — creative logo grid -->
   <section class="brand-section">
     <div class="container">
-      <div class="text-center">
+      <div class="text-center" data-aos="fade-up">
         <div class="section-title-small">BRANDS WE WORK WITH</div>
         <h2 class="section-title-large" style="font-size: 32px;">Trusted global manufacturers</h2>
         <p style="margin-bottom: 3rem;">We install, service, and maintain systems from these leading brands.</p>
       </div>
       <div class="brand-grid">
         <!-- Mitsubishi Electric -->
-        <div class="brand-item">
+        <div class="brand-item" data-aos="zoom-in" data-aos-delay="0">
           <img src="/images/mitsubishi.png" alt="Mitsubishi Electric" onerror="this.src='https://via.placeholder.com/150x60?text=Mitsubishi'">
         </div>
         <!-- Daikin -->
-        <div class="brand-item">
+        <div class="brand-item" data-aos="zoom-in" data-aos-delay="100">
           <img src="/images/daikin.png" alt="Daikin" onerror="this.src='https://via.placeholder.com/150x60?text=Daikin'">
         </div>
         <!-- Panasonic -->
-        <div class="brand-item">
+        <div class="brand-item" data-aos="zoom-in" data-aos-delay="200">
           <img src="/images/panasonic.png" alt="Panasonic" onerror="this.src='https://via.placeholder.com/150x60?text=Panasonic'">
         </div>
         <!-- Temperzone -->
-        <div class="brand-item">
+        <div class="brand-item" data-aos="zoom-in" data-aos-delay="300">
           <img src="/images/temperzone.png" alt="Temperzone" onerror="this.src='https://via.placeholder.com/150x60?text=Temperzone'">
         </div>
         <!-- AirTouch -->
-        <div class="brand-item">
+        <div class="brand-item" data-aos="zoom-in" data-aos-delay="400">
           <img src="/images/airtouch.png" alt="AirTouch" onerror="this.src='https://via.placeholder.com/150x60?text=AirTouch'">
         </div>
       </div>
@@ -950,33 +988,39 @@
   <!-- TESTIMONIALS -->
   <section class="testimonials section">
     <div class="container">
-      <div class="testimonials-header">
+      <div class="testimonials-header" data-aos="fade-up">
         <div class="section-title-small">TESTIMONIALS</div>
         <h2 class="section-title-large">Our Clients Review</h2>
       </div>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="card-bg" style="background: linear-gradient(145deg, #2c7cb0, #1a4b6d);"></div>
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-bg" style="background-image: url('images/service1.jpg');"></div>
           <div class="testimonial-content">
-            <div class="avatar">👤</div>
+            <div class="avatar">
+              <img src="/images/download (5).jpg" alt="Client name">
+            </div>
             <h3>Kasun Perera</h3>
             <p>Quick response and very professional work. My AC is working perfectly now.</p>
             <div class="stars">★★★★<span class="star-light">★</span></div>
           </div>
         </div>
-        <div class="testimonial-card">
-          <div class="card-bg" style="background: linear-gradient(145deg, #4a6fa5, #1e3a5f);"></div>
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-bg" style="background-image: url('images/service2.jpg');"></div>
           <div class="testimonial-content">
-            <div class="avatar">👤</div>
+            <div class="avatar">
+              <img src="/images/download (7).jpg" alt="Client name">
+            </div>
             <h3>Nadeesha Silva</h3>
             <p>Affordable pricing and friendly technician. Highly recommended.</p>
             <div class="stars">★★★★<span class="star-light">★</span></div>
           </div>
         </div>
-        <div class="testimonial-card">
-          <div class="card-bg" style="background: linear-gradient(145deg, #2e8b57, #1d5a3e);"></div>
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-bg" style="background-image: url('images/service3.jpg');"></div>
           <div class="testimonial-content">
-            <div class="avatar">👤</div>
+            <div class="avatar">
+              <img src="/images/download (6).jpg" alt="Client name">
+            </div>
             <h3>Ruwan Fernando</h3>
             <p>Booked in the morning, fixed by afternoon. Excellent service!</p>
             <div class="stars">★★★★<span class="star-light">★</span></div>
@@ -988,12 +1032,10 @@
 
   <!-- FOOTER -->
   <footer class="contact-footer">
-    <div class="footer-content">
+    <div class="footer-content" data-aos="fade-up">
       <h2 class="footer-title">Auckland Wide Service</h2>
       <div class="footer-logo">
-        <h3>CLIMACORE</h3>
-        <span>HVAC</span>
-        <p>SMART CLIMATE SOLUTIONS</p>
+        <img src="/images/Logo.png" alt="Climacore Logo">
       </div>
       <p class="footer-description">Need professional HVAC support?<br>Contact us now for quick and reliable service.</p>
       <div class="footer-contact">
@@ -1001,9 +1043,30 @@
         <div class="contact-item"><span class="icon">📞</span> <span>+64 21 226 2040</span></div>
         <div class="contact-item"><span class="icon">📍</span> <span>Auckland</span></div>
       </div>
-      <div class="footer-social"><a href="#">F</a><a href="#">G</a></div>
+      <div class="footer-social">
+        <a href="#" class="social-icon facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="mailto:your@email.com" class="social-icon gmail">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
       <div class="footer-bottom">© 2026 Mocxdesigns. All rights reserved</div>
     </div>
   </footer>
+  </div>
+
+  <!-- AOS JS & initialization -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 900,           // animation duration in ms
+      once: false,             // animate every time you scroll (both down & up)
+      mirror: true,            // animate when scrolling up as well
+      offset: 80,              // offset (in px) from the original trigger point
+      easing: 'ease-in-out'    // easing function
+    });
+  </script>
 </body>
 </html>
